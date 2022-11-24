@@ -1,0 +1,26 @@
+<div>New Post</div>
+
+<div data-turbo="false">
+  <%= form_with model: Post do |form| %>
+    <div>
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
+      <% @post.errors.full_messages_for(:title).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  
+    <div>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %><br>
+      <% @post.errors.full_messages_for(:body).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    <%= @post.errors.messages %>
+    </div>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <div>
+      <%= form.submit "Submit" %>
+    </div>
+  <% end %>
+</div>
